@@ -1,12 +1,12 @@
 services:
   - type: web
-    name: go-simple-server
-    env: go
+    name: snap
     plan: free
     buildCommand: cd snap-go && go build -o server
     startCommand: ./snap-go/server
-    region: oregon
+    region: frankfurt
     autoDeploy: true
+    runtime: go
     envVars:
       - key: GO_ENV
         value: production
