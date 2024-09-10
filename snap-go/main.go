@@ -120,20 +120,12 @@ func dealDeckToPlayers(players []*websocket.Conn) {
 }
 
 func main() {
-	// Create and shuffle the deck at startup
 	deck = createDeck()
-
-	// WebSocket endpoint for game
 	http.HandleFunc("/ws", wsHandler)
-
-	// Serve static frontend files
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
-
-	// Serve the game.html file at the root
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "game.html")
-	})
-
+    http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        http.ServeFile(w, r, "static/game.html")
+    })
 	fmt.Println("Server is running on port 8080")
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
