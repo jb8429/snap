@@ -5,12 +5,16 @@ import (
 	"net/http"
 )
 
+func snapHandler(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w, r, "snap.html")
+}
+
 func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Snap the game")
 }
 
 func main() {
-    fs := http.FileServer(http.Dir("./static")
+    fs := http.FileServer(http.Dir("./static"))
     http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	http.HandleFunc("/", helloWorldHandler)
