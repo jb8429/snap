@@ -6,7 +6,7 @@ import (
 )
 
 func snapHandler(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w, r, "snap.html")
+    http.ServeFile(w, r, "game.html")
 }
 
 func helloWorldHandler(w http.ResponseWriter, r *http.Request) {
