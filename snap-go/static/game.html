@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snap Game</title>
+</head>
+<body>
+    <h1>Snap Game</h1>
+    <button id="connect">Join Game</button>
+    <h2>Your Deck:</h2>
+    <ul id="deckList"></ul>
+
+    <script>
+        let socket;
+
+        // Connect to WebSocket on button click
+        document.getElementById('connect').addEventListener('click', function() {
+            socket = new WebSocket('ws://localhost:8080/ws');
+            socket.onopen = function() {
+                console.log('Connected to the game');
+            };
+
+            // When receiving the deck, display it
+            socket.onmessage = function(event) {
+                const deck = JSON.parse(event.data);
+                const deckList = document.getElementById('deckList');
+                deckList.innerHTML = ''; // Clear existing deck
+
+                deck.forEach(card => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${card.value} of ${card.suit}`;
+                    deckList.appendChild(listItem);
+                });
+            };
+
+            socket.onclose = function() {
+                console.log('Disconnected from the game');
+            };
+
+            socket.onerror = function(error) {
+                console.log('WebSocket error:', error);
+            };
+        });
+    </script>
+</body>
+</html>
