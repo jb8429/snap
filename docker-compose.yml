@@ -1,6 +1,6 @@
 services:
   go-app:
-    image: golang:1.23.1
+    image: golang:1.23
     container_name: go-app
     volumes:
       - ./snap-go:/app
