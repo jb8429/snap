@@ -130,8 +130,8 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	// Serve the game.html file at the root
-	http.HandleFunc("/game", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "static/game.html")
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "game.html")
 	})
 
 	fmt.Println("Server is running on port 8080")
