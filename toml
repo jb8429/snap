@@ -1,0 +1,10 @@
+# Config file for air (live reload for Go)
+[build]
+  # Working directory where your Go code resides
+  bin = "./tmp/main"  # The location of the compiled binary
+  cmd = "go build -o ./tmp/main"  # Build command
+  exclude_dir = ["tmp", "vendor"]  # Directories to exclude from the watcher
+  full_bin = true  # Ensures full binary recompilation each time
+  
+[log]
+  level = "info"  # Log level for air

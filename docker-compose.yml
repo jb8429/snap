@@ -1,11 +1,13 @@
 services:
   go-app:
-    image: golang:1.23
+    image: golang:1.23-alpine
     container_name: go-app
+    working_dir: /app/snap-go
+    build:
+      context: .
     volumes:
-      - ./snap-go:/app
-    working_dir: /app
-    command: go run main.go
+      - ./snap-go:/app/snap-go  # Ensure this path points to the right directory
+      - /app/snap-go/tmp
     ports:
       - "8080:8080"
     environment:
