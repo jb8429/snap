@@ -124,7 +124,7 @@ func main() {
 	http.HandleFunc("/ws", wsHandler)
     http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        http.ServeFile(w, r, "static/game.html")
+        http.ServeFile(w, r, "./static/game.html")
     })
 	fmt.Println("Server is running on port 8080")
 	err := http.ListenAndServe(":8080", nil)
