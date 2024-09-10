@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
   go-app:
     image: golang:1.23
     container_name: go-app
     volumes:
-      - .:/app
+      - ./snap-go:/app
     working_dir: /app
     command: go run main.go
     ports:
@@ -13,6 +11,3 @@ services:
     environment:
       - GO_ENV=development
       - PORT=8080
-
-volumes:
-  postgres_data:
