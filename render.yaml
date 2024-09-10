@@ -3,8 +3,8 @@ services:
     name: go-simple-server
     env: go
     plan: free
-    buildCommand: go build -o server
-    startCommand: ./server
+    buildCommand: cd snap-go && go build -o server
+    startCommand: ./snap-go/server
     region: oregon
     autoDeploy: true
     envVars:
